@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.formulario{
+        background-image: linear-gradient(to bottom right,darkseagreen,darkslategrey);
+        border:1px solid white;
+        width: 400px;
+        height:250px;
+        border-radius: 8px;
+    }
+
