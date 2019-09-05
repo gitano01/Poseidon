@@ -1,7 +1,7 @@
 .App {
   text-align: center;
-  background-image: linear-gradient(to bottom right, darkslategrey,darkseagreen);
-}
+  background-image: linear-gradient(to bottom right, darkslategray, darkseagreen);
+  }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

@@ -16,20 +16,26 @@ class Login extends Component {
 
     constructor(props){
         super(props);
-        this.state = { value: "", username:"", password:""}
+        this.state = { value: '', username:'', password:''}
+    }
+    handleUser(text){
+        this.setState({user: text.target.value})
+    }
+    handlePassword(text){
+        this.setState({password: text.target.value})
     }
 
-    handleChange(event){
-        this.setState({value: event.target.value})
+    imprime_valores(){
+        const user = this.state;
+        const password = this.state;
+        ((user.toString() === "") && (password.toString() === "")) ? console.warn("Los campos estan vacíos") : console.warn(user.toString() + "\n" + password.toString() );
     }
 
-
-    render(){
+  render(){
 
         return(
                 <div className="container">
-
-                      <div class="justify-content-center col-md-8" className="formulario">
+                     <div class="justify-content-center col-md-8" className="formulario">
                           <form onSubmit={this.handleSubmit}>
                               <div class="card-log card-log-b">
                                   <div class="card-header">
@@ -40,18 +46,18 @@ class Login extends Component {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><FaUser/></span>
                                         </div>
-                                          <input className="form-control col-md-12" placeholder="Nombre de Usuario"/>
+                                          <input className="form-control col-md-12" placeholder="Nombre de Usuario" autoFocus={true} onClick={(text) => {this.handleUser(text)}}/>
 
                                     </div>
                                       <div className="input-group form-group">
                                           <div className="input-group-prepend">
                                               <span className="input-group-text"><FaKey/></span>
                                           </div>
-                                          <input className="form-control col-md-12" placeholder="Contraseña"/>
+                                          <input className="form-control col-md-12" placeholder="Contraseña" type="password" onClick={(text) => {this.handlePassword(text)}}/>
 
                                       </div>
                                     <div className="form-group ">
-                                          <input className="form-control col-md-12 btn-danger" value="Iniciar sesión" type="submit"/>
+                                          <input className="form-control col-md-12 btn-danger" value="Iniciar sesión" type="submit" onClick = {this.imprime_valores()}/>
                                     </div>
 
                                   </div>
