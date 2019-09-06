@@ -1,20 +1,24 @@
 import React from 'react';
 import './App.css';
-import Login from './components/login';
+import {BrowserRouter as Router,Route, Link} from "react-router-dom";
+import Login from './login';
+class App extends React.Component{
 
-function App() {
+    render(){
+        return(
+          <div className="App">
+              <h1>Home</h1>
+              <Router>
+                  <div>
+                      <Link to="/login">Iniciar sesión</Link>
+                      <Route path="/login" component={Login}/>
+                  </div>
+              </Router>
 
-  return (
+          </div>
+        );
+    }
 
-      <div className="App">
-
-          <Login></Login>
-
-      </div>
-
-  );
 }
-
-
 
 export default App;

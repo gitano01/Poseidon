@@ -1,14 +1,42 @@
 .container{
     display: flex;
+    width:100%;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
 }
-.formulario{
+.formSignIn{
         background-image: linear-gradient(to bottom right,darkseagreen,darkslategrey);
         border:1px solid white;
         width: 400px;
-        height:250px;
+        height:auto;
         border-radius: 8px;
-    }
+    padding: 5px;
 
+    }
+.formSignUp{
+    background-image: linear-gradient(to bottom right,darkseagreen,darkslategrey);
+    border:1px solid white;
+    width: auto;
+    height:auto;
+    border-radius: 8px;
+}
+
+.contenedorImg{
+    border-radius: 80px;
+}
+.image{
+
+    width: 150px;
+    height: 150px;
+    border-radius: 180px;
+    padding: 5px;
+    background: linear-gradient(to right, darkslategray, cyan);
+}
+
+
+
+
+.header{
+
+}
