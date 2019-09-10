@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import '../style/poseidon.css';
+import '../../style/poseidon.css';
 import {FaUser, FaKey} from "react-icons/all";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo  from '../images/user.png';
