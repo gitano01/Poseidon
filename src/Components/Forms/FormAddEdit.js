@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, FormGroup, Label, Input } from 'reactstrap';
+import {Form, FormGroup, Input } from 'reactstrap';
 import {FaUser, FaKey, FaEnvelope} from "react-icons/all";
 
 class AddEditForm extends React.Component {
@@ -26,18 +26,21 @@ class AddEditForm extends React.Component {
     const {email} = this.state;
     const  {password} = this.state;
     const  {password_confirm} = this.state;
-    var op =0;
 
-    username.toString() === "" ? alert("","el usuario no puede estar vacío")
-        : email.toString() ==="" ? alert("","el email no puede estar vacío")
-        : password.toString() ==="" ? alert("","La contraseña no puede estar vacía")
-        : password_confirm.toString() ==="" ? alert("","Confirmar contraseña no puede estar vacío")
-        : password_confirm.toString() !== password.toString() ? alert("","Las contraseñas no coinciden")
+
+    username.toString() === "" ? alert("el usuario no puede estar vacío")
+        : email.toString() ==="" ? alert("el email no puede estar vacío")
+        : password.toString() ==="" ? alert("La contraseña no puede estar vacía")
+        : password_confirm.toString() ==="" ? alert("Confirmar contraseña no puede estar vacío")
+        : password_confirm.toString() !== password.toString() ? alert("Las contraseñas no coinciden")
         : this.submitFormAdd()
        }
 
-    submitFormAdd= e =>{
-        e.preventDefault()
+    submitFormAdd= () =>{
+
+        alert(this.state.username +" "+ this.state.email );
+
+
         fetch('http://localhost:3000/api/users/new',{
             method:'post',
             headers:{
@@ -45,7 +48,9 @@ class AddEditForm extends React.Component {
             },
             body: JSON.stringify({
                 username: this.state.username,
+                email: this.state.email,
                 password: this.state.password
+
             })
         })
             .then(response => response.json())
@@ -108,19 +113,19 @@ class AddEditForm extends React.Component {
                     <div className="input-group-prepend">
                         <span className="input-group-text"><FaEnvelope/></span>
                     </div>
-                    <Input type="text" placeholder="correo electrónico" name="email" id="email" onChange={this.onChange} value={this.state.username === null ? '' : this.state.username} />
+                    <Input type="text" placeholder="correo electrónico" name="email" id="email" onChange={this.onChange} value={this.state.email === null ? '' : this.state.email} />
                 </FormGroup>
                 <FormGroup className="input-group form-group">
                     <div className="input-group-prepend">
                     <span className="input-group-text"><FaKey/></span>
                     </div>
-                    <Input type="password" placeholder="Contraseña" name="password" id="password" onChange={this.onChange} value={this.state.last === null ? '' : this.state.last}  />
+                    <Input type="password" placeholder="Contraseña" name="password" id="password" onChange={this.onChange} value={this.state.password === null ? '' : this.state.password}  />
                 </FormGroup>
                 <FormGroup className="input-group form-group">
                     <div className="input-group-prepend">
                     <span className="input-group-text"><FaKey/></span>
                     </div>
-                    <Input type="password" placeholder="Confirmar contraseña" name="password_confirm" id="password_confirm" onChange={this.onChange} value={this.state.email === null ? '' : this.state.email}  />
+                    <Input type="password" placeholder="Confirmar contraseña" name="password_confirm" id="password_confirm" onChange={this.onChange} value={this.state.password_confirm === null ? '' : this.state.password_confirm}  />
                 </FormGroup>
 
                 <div className="form-group ">
