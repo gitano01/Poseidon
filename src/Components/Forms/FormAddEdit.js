@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form, FormGroup, Input } from 'reactstrap';
 import {FaUser, FaKey, FaEnvelope} from "react-icons/all";
+let md5  = require ('md5');
 
 class AddEditForm extends React.Component {
 
@@ -28,40 +29,44 @@ class AddEditForm extends React.Component {
     const  {password_confirm} = this.state;
 
 
+
     username.toString() === "" ? alert("el usuario no puede estar vacío")
         : email.toString() ==="" ? alert("el email no puede estar vacío")
         : password.toString() ==="" ? alert("La contraseña no puede estar vacía")
         : password_confirm.toString() ==="" ? alert("Confirmar contraseña no puede estar vacío")
         : password_confirm.toString() !== password.toString() ? alert("Las contraseñas no coinciden")
-        : this.submitFormAdd()
+        : this.submitFormAdd.bind(this)
        }
 
-    submitFormAdd= () =>{
 
-        alert(this.state.username +" "+ this.state.email );
+    submitFormAdd= (event) =>{
+
+        event.preventDefault();
+        const  {username} = this.state;
+        const {email} = this.state;
+        const  {password} = this.state;
+
+
+        let datos = {
+            "username": username.toString(),
+            "email": email.toString(),
+            "password": md5(password.toString())
+        }
 
 
         fetch('http://localhost:3000/api/users/new',{
-            method:'post',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify({
-                username: this.state.username,
-                email: this.state.email,
-                password: this.state.password
-
-            })
+            method:'POST',
+            headers:new Headers({'Content-Type':'application/json'}),
+            body: JSON.stringify(datos)
         })
             .then(response => response.json())
-            .then(item => {
-                if(Array.isArray(item)){
-                    this.props.addItemToState(item[0])
-                    this.props.toggle()
-                }else{
-                    console.log("Fallas")
-                }
+            .then(data => {
+
+                console.log(data);
+                this.props.toggle();
+
             })
+            .done()
     }
 
     submitFormEdit = e => {
@@ -92,11 +97,7 @@ class AddEditForm extends React.Component {
     }
 
     componentDidMount(){
-        // if item exists, populate the state with proper data
-        if(this.props.item){
-            const { id, username,password } = this.props.item
-            this.setState({ id, username,password })
-        }
+       console.log('COMPONENT HAS MOUNTED');
     }
 
 
